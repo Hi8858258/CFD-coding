@@ -12,7 +12,7 @@ yi+1 = yi + (yi - 2xi / yi) * delta_x
 
 time_start = time()
 range_x = 1.0
-N = 10 #先将求解域离散成N等分
+N = 10000 #先将求解域离散成N等分
 x, delta_x = np.linspace(0.0, 1.0, N + 1, retstep= True)
 y = np.ones(N+1, dtype=np.float64)
 

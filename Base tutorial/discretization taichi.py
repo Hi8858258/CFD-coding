@@ -11,8 +11,8 @@ y(0) = 1
 yi+1 = yi + (yi - 2xi / yi) * delta_x
 '''
 
-ti.init(arch=ti.gpu,device_memory_GB=4)
-N = 10
+ti.init(arch=ti.cpu)
+N = 10000
 x = np.linspace(0, 1.0, N+1)
 y = np.ones(N+1)
 
@@ -29,20 +29,15 @@ class Solver:
 
     @ti.kernel
     def computer(self):
-        for i in ti.ndrange(self.N):
+        self.taichi_y[0] = 1.0
+        for i in range(self.N):
             self.taichi_y[i+1] = self.taichi_y[i] + (self.taichi_y[i] - 2 * self.taichi_x[i] / self.taichi_y[i]) * self.delta_x
-            print(self.taichi_y[i+1])
 
 time_start = time()
-
-        
 t = Solver( Xrange = 1.0, x = x, y = y, N = N)
 t.computer()
-
 print(t.taichi_y)
-
 time_end = time()
-
 time_spend = time_end - time_start
 print(time_spend)
 
