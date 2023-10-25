@@ -1,6 +1,9 @@
 import numpy as np
+A_list = [[3, -1, 0, 0],
+        [-2, 6, -1, 0],
+        [0, -2, 6, -1],
+        [0, 0, -2, 7]]
 
 
-x = np.linspace(0,1.0, 10, dtype=float)
 
-print(type(x[1]))
+print(b)
